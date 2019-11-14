@@ -99,7 +99,7 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
 class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
     def afterSetUp(self):
-        environ = {'SERVER_NAME': "", 'SERVER_PORT': 0}
+        environ = {'SERVER_NAME': "", 'SERVER_PORT': '0'}
         response = HTTPResponse(stdout=StringIO())
         request = HTTPRequest(StringIO(""), environ, response)
         self.varname = 'tree-expansion'
@@ -156,7 +156,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
         # now make a tree that doesn't set a cookie
         treeexp = response.cookies[self.varname]['value']
-        environ = {'SERVER_NAME': "", 'SERVER_PORT': 0}
+        environ = {'SERVER_NAME': "", 'SERVER_PORT': '0'}
         response = HTTPResponse(stdout=StringIO())
         request = HTTPRequest(StringIO(""), environ, response)
         request.other[self.varname] = treeexp
