@@ -1,15 +1,14 @@
-
-"""
-$Id: testZopeTree.py,v 1.5 2003/05/30 15:13:02 philipp Exp $
-"""
-
-import os, sys
-if __name__ == '__main__':
-    execfile(os.path.join(sys.path[0], 'framework.py'))
-
-from Testing import ZopeTestCase
-from Products.ZopeTree.IZopeTree import INode, IZopeTree
 from Products.ZopeTree import Node, ZopeTree
+from Products.ZopeTree.IZopeTree import INode, IZopeTree
+from StringIO import StringIO
+from Testing import ZopeTestCase
+from ZPublisher.HTTPRequest import HTTPRequest
+from ZPublisher.HTTPResponse import HTTPResponse
+from ZTUtils.Tree import b2a
+import os
+import unittest
+import zlib
+
 
 ZopeTestCase.installProduct('ZopeTree')
 
@@ -58,8 +57,8 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
 
     def test_verify_interface(self):
         """Verify interface implementation"""
-        from Interface.Verify import verifyObject
-        self.failUnless(verifyObject(INode, self.root_node))
+        from zope.interface.verify import verifyObject
+        self.assertTrue(verifyObject(INode, self.root_node))
 
     def test_expand_collapse(self):
         """Test node expansion/collapsion"""
@@ -96,18 +95,13 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
         expected = [self.items[i] for i in "bcfg"]
         self.assertEqual(children, expected)
 
-import zlib
-from StringIO import StringIO
-from ZTUtils.Tree import b2a
-from ZPublisher.HTTPRequest import HTTPRequest
-from ZPublisher.HTTPResponse import HTTPResponse
 
 class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
     def afterSetUp(self):
         environ = os.environ.copy()
         environ['SERVER_NAME'] = ""
-        environ['SERVER_PORT'] = ""
+        environ['SERVER_PORT'] = 0
         response = HTTPResponse(stdout=StringIO())
         request = HTTPRequest(StringIO(""), environ, response)
         self.varname = 'tree-expansion'
@@ -126,7 +120,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
     def test_verify_interface(self):
         """Verify interface implementation"""
-        from Interface.Verify import verifyObject
+        from zope.interface.verify import verifyObject
         self.failUnless(verifyObject(IZopeTree, self.tree))
 
     def test_encode_tree_expansion(self):
@@ -166,7 +160,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         treeexp = response.cookies[self.varname]['value']
         environ = os.environ.copy()
         environ['SERVER_NAME'] = ""
-        environ['SERVER_PORT'] = ""
+        environ['SERVER_PORT'] = 0
         response = HTTPResponse(stdout=StringIO())
         request = HTTPRequest(StringIO(""), environ, response)
         request.other[self.varname] = treeexp
@@ -174,13 +168,9 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
                              self.varname, set_cookie=0)
         self.failIf(response.cookies.has_key(self.varname))
 
-if __name__ == '__main__':
-    framework(descriptions=1, verbosity=2)
-else:
-    import unittest
-    def test_suite():
-        suite = unittest.TestSuite()
-        suite.addTest(unittest.makeSuite(NodeTest))
-        suite.addTest(unittest.makeSuite(ZopeTreeTest))
-        return suite
 
+def test_suite():
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(NodeTest))
+    suite.addTest(unittest.makeSuite(ZopeTreeTest))
+    return suite

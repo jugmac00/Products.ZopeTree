@@ -14,13 +14,14 @@ $Id: ZopeTree.py,v 1.8 2003/05/30 15:13:02 philipp Exp $
 """
 
 import zlib
+import zope.interface
 from ZTUtils.Tree import b2a, a2b
 
 from IZopeTree import IZopeTree, INode
 
-class Node:
 
-    __implements__ = INode
+@zope.interface.implementer(INode)
+class Node:
 
     __allow_access_to_unprotected_subobjects__ = 1
 
@@ -112,9 +113,9 @@ def safe_decompress(input, max_size=10240):
             raise ValueError('Compressed input too large')
     return output + decomp.flush()
 
-class ZopeTree(Node):
 
-    __implements__ = IZopeTree
+@zope.interface.implementer(IZopeTree)
+class ZopeTree(Node):
 
     __allow_access_to_unprotected_subobjects__ = 1
 
