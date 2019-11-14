@@ -12,6 +12,7 @@ import zlib
 
 ZopeTestCase.installProduct('ZopeTree')
 
+
 # simple object that can have an id and a set of children
 class Item:
     def __init__(self, id, children=[]):
@@ -79,7 +80,7 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
         root_node = self.root_node
         # testing hasChildren()
         self.failUnless(root_node.hasChildren())
-        
+
         # testing getChildrenNodes()
         children = [node.object for node in root_node.getChildrenNodes()]
         expected = [self.items['b'], self.items['c']]
@@ -114,7 +115,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         self.root_obj = make_item_from_tuple(tree, self.items)
         self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
                              self.varname)
-        
+
     def afterClear(self):
         pass
 

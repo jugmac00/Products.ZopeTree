@@ -59,7 +59,7 @@ class Node:
         self.object = object
         self.depth = depth
         self.expanded = 0
-        
+
         self._id_attr = id_attr
         self._children_attr = children_attr
         self._expanded_nodes = expanded_nodes
@@ -84,7 +84,7 @@ class Node:
             return len(self._get_attr(self._children_attr)) > 0
         except AttributeError:
             return 0
-        
+
     def getChildrenNodes(self):
         if not self.expanded:
             return []
@@ -100,6 +100,7 @@ class Node:
             nodes.append(node)
             nodes += node.getFlatNodes()
         return nodes
+
 
 def safe_decompress(input, max_size=10240):
     # this sillyness can go away in python 2.2
@@ -129,7 +130,7 @@ class ZopeTree(Node):
                 # set a cookie right away
                 request.RESPONSE.setCookie(request_variable, tree_expansion)
             expanded_nodes = self.decodeTreeExpansion(tree_expansion)
-        
+
         Node.__init__(self, root_object, 0, id_attr, children_attr,
                       expanded_nodes)
         self.expand()
