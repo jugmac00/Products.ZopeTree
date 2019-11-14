@@ -64,21 +64,21 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
         """Test node expansion/collapsion"""
         root_node = self.root_node
         # first the node is expanded
-        self.failUnless(root_node.expanded)
+        self.assertTrue(root_node.expanded)
         # now collapse it
         root_node.collapse()
-        self.failIf(root_node.expanded)
+        self.assertFalse(root_node.expanded)
         # make sure there are no children nodes returned!
         self.assertEqual(root_node.getChildrenNodes(), [])
         # expand it again
         root_node.expand()
-        self.failUnless(root_node.expanded)
+        self.assertTrue(root_node.expanded)
 
     def test_children(self):
         """Test children"""
         root_node = self.root_node
         # testing hasChildren()
-        self.failUnless(root_node.hasChildren())
+        self.assertTrue(root_node.hasChildren())
 
         # testing getChildrenNodes()
         children = [node.object for node in root_node.getChildrenNodes()]
@@ -119,7 +119,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
     def test_verify_interface(self):
         """Verify interface implementation"""
         from zope.interface.verify import verifyObject
-        self.failUnless(verifyObject(IZopeTree, self.tree))
+        self.assertTrue(verifyObject(IZopeTree, self.tree))
 
     def test_encode_tree_expansion(self):
         """Test tree expansion encoding and decoding"""
@@ -142,17 +142,17 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         self.assertEqual(len(flatdicts), len(self.tree.getFlatNodes()))
         bdict = flatdicts[0]
         self.assertEqual(bdict['id'], 'b')
-        self.failIf(bdict['expanded'])
+        self.assertFalse(bdict['expanded'])
         self.assertEqual(bdict['depth'], 1)
-        self.failUnless(bdict['children'])
-        self.failUnless(bdict['object'] is self.items['b'])
+        self.assertTrue(bdict['children'])
+        self.assertTrue(bdict['object'] is self.items['b'])
 
     def test_cookie(self):
         """Test cookies"""
         # by default, the tree sets a cookie, so test for that
         request = self.request
         response = request.RESPONSE
-        self.failUnless(response.cookies.has_key(self.varname))
+        self.assertTrue(response.cookies.has_key(self.varname))
 
         # now make a tree that doesn't set a cookie
         treeexp = response.cookies[self.varname]['value']
@@ -162,7 +162,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         request.other[self.varname] = treeexp
         self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
                              self.varname, set_cookie=0)
-        self.failIf(response.cookies.has_key(self.varname))
+        self.assertFalse(response.cookies.has_key(self.varname))
 
 
 def test_suite():
