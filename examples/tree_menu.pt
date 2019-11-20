@@ -1,0 +1,49 @@
+<h1 tal:replace="structure here/manage_page_header" />
+
+<!-- this is supposed to work similiar to manage_menu -->
+
+<table cellspacing="0"
+       tal:define="ZopeTree  modules/Products/ZopeTree;
+                   root_obj  python:ZopeTree.TreeObjectWrapper('', here);
+                   root      python:ZopeTree.ZopeTree(root_obj, id_attr='path', children_attr='getFolderishChildren', request=request);
+                   flatdicts root/getFlatDicts">
+
+<tr bgcolor="#000000">
+  <td width="16">
+    <img src="" title="" alt="" border="0"
+         tal:attributes="src here/icon; title here/meta_type; alt here/meta_type" />
+  </td>
+
+  <td class="list-item" style="color:#ffffff;" tal:attributes="colspan python:root.maxdepth+1">
+    <b tal:content="python:here.getId() or 'Root Folder'"></b>
+  </td>
+</tr>
+
+<tr tal:repeat="node flatdicts"
+    tal:attributes="class python:repeat['node'].odd() and 'row-normal' or 'row-hilite'">
+
+  <td width="16" tal:repeat="depth python:range(node['depth']-1)"></td>
+
+  <td width="16">
+    <a href=""
+       tal:attributes="href string:?tree-expansion=${node/tree-expansion}"
+       tal:condition="node/children">
+      <img src="/p_/pl" tal:condition="not:node/expanded" alt="+" border="0" />
+      <img src="/p_/mi" tal:condition="node/expanded" alt="-" border="0" />
+    </a>
+  </td>
+
+  <td width="16" tal:define="object node/object/object">
+    <img src="" title="" alt="" border="0"
+         tal:condition="object/icon"
+         tal:attributes="src object/icon; title object/meta_type; alt object/meta_type" />
+  </td>
+
+  <td colspan="1" class="list-item"
+      tal:attributes="colspan python:root.maxdepth - node['depth'] + 1"
+      tal:content="node/id">node/id</td>
+</tr>
+
+</table>
+
+<h1 tal:replace="structure here/manage_page_footer" />
