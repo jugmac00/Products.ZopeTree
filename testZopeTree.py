@@ -1,6 +1,6 @@
 
 """
-$Id: testZopeTree.py,v 1.1.1.1 2003/03/12 19:41:33 philipp Exp $
+$Id: testZopeTree.py,v 1.2 2003/03/15 17:39:17 philipp Exp $
 """
 
 import os, sys
@@ -8,8 +8,8 @@ if __name__ == '__main__':
     execfile(os.path.join(sys.path[0], 'framework.py'))
 
 from Testing import ZopeTestCase
-from Products.RevisionManager.interfaces.ZopeTree import INode, IZopeTree
-from Products.RevisionManager.ZopeTree import Node, ZopeTree
+from Products.ZopeTree.IZopeTree import INode, IZopeTree
+from Products.ZopeTree import Node, ZopeTree
 
 ZopeTestCase.installProduct('ZopeTree')
 

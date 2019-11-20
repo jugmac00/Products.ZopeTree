@@ -10,11 +10,10 @@
 #
 
 """
-$Id: ZopeTree.py,v 1.2 2003/03/13 08:34:38 philipp Exp $
+$Id: ZopeTree.py,v 1.3 2003/03/14 18:10:31 philipp Exp $
 """
 
 import zlib
-from types import ListType, IntType
 from ZTUtils.Tree import b2a, a2b
 
 from IZopeTree import IZopeTree, INode

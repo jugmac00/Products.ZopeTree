@@ -10,7 +10,7 @@
 #
 
 """
-$Id: IZopeTree.py,v 1.1.1.1 2003/03/12 19:41:33 philipp Exp $
+$Id: IZopeTree.py,v 1.2 2003/03/15 08:57:53 philipp Exp $
 """
 
 from Interface import Interface, Attribute
@@ -95,7 +95,7 @@ class IZopeTree(INode):
 
     def decodeTreeExpansion(tree_expansion):
         """
-        Deocde the tree expansion information 'tree_expansion'.
+        Decode the tree expansion information 'tree_expansion'.
         """
 
     def getFlatDicts():

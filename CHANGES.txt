@@ -1,0 +1,10 @@
+
+CHANGES
+
+v1.1 (2003-03-17)
+
+  * It now works on Zope 2.4.
+
+  * The unit test was not converted from RevisionManager yet.
+
+v1.0 (2003-03-14)
