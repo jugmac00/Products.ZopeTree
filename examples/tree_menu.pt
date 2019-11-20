@@ -4,17 +4,23 @@
 
 <table cellspacing="0"
        tal:define="ZopeTree  modules/Products/ZopeTree;
-                   root_obj  python:ZopeTree.TreeObjectWrapper('', here);
-                   root      python:ZopeTree.ZopeTree(root_obj, id_attr='path', children_attr='getFolderishChildren', request=request);
+                   root_obj  python:ZopeTree.TreeObjectWrapper(here);
+                   root      python:ZopeTree.ZopeTree(
+                                        root_obj, id_attr='path',
+                                        children_attr='getFolderishChildren',
+                                        request=request);
                    flatdicts root/getFlatDicts">
 
 <tr bgcolor="#000000">
   <td width="16">
     <img src="" title="" alt="" border="0"
-         tal:attributes="src here/icon; title here/meta_type; alt here/meta_type" />
+         tal:attributes="src here/icon;
+                         title here/meta_type;
+                         alt here/meta_type" />
   </td>
 
-  <td class="list-item" style="color:#ffffff;" tal:attributes="colspan python:root.maxdepth+1">
+  <td class="list-item" style="color:#ffffff;"
+      tal:attributes="colspan python:root.maxdepth+1">
     <b tal:content="python:here.getId() or 'Root Folder'"></b>
   </td>
 </tr>
@@ -36,7 +42,9 @@
   <td width="16" tal:define="object node/object/object">
     <img src="" title="" alt="" border="0"
          tal:condition="object/icon"
-         tal:attributes="src object/icon; title object/meta_type; alt object/meta_type" />
+         tal:attributes="src node/object/icon;
+                         title node/object/meta_type;
+                         alt node/object/meta_type" />
   </td>
 
   <td colspan="1" class="list-item"

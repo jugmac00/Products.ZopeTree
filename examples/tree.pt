@@ -8,10 +8,13 @@
 <tr bgcolor="#000000">
   <td width="16">
     <img src="" title="" alt="" border="0"
-         tal:attributes="src here/icon; title here/meta_type; alt here/meta_type" />
+         tal:attributes="src here/icon;
+                         title here/meta_type;
+                         alt here/meta_type" />
   </td>
 
-  <td class="list-item" style="color:#ffffff;" tal:attributes="colspan python:root.maxdepth+1">
+  <td class="list-item" style="color:#ffffff;"
+      tal:attributes="colspan python:root.maxdepth+1">
     <b tal:content="python:here.getId() or 'Root Folder'"></b>
   </td>
 </tr>
@@ -33,7 +36,9 @@
   <td width="16">
     <img src="" title="" alt="" border="0"
          tal:condition="node/object/icon"
-         tal:attributes="src node/object/icon; title node/object/meta_type; alt node/object/meta_type" />
+         tal:attributes="src node/object/icon;
+                         title node/object/meta_type;
+                         alt node/object/meta_type" />
   </td>
 
   <td colspan="1" class="list-item"

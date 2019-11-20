@@ -5,12 +5,12 @@
 #
 # Copyright (c) 2001-2003 by Philipp "philiKON" von Weitershausen
 #
-# This software is distributed under the terms of the Mozilla Public License
-# (MPL)
+# This software is distributed under the terms of the Mozilla Public
+# License (MPL)
 #
 
 """
-$Id: ZopeTree.py,v 1.3 2003/03/14 18:10:31 philipp Exp $
+$Id: ZopeTree.py,v 1.6 2003/04/28 22:46:13 philipp Exp $
 """
 
 import zlib
@@ -26,8 +26,8 @@ class Node:
 
     def _get_attr(self, attr):
         """
-        Get the attribute 'attr' from the wrapped object. If the result
-        is callable, call it.
+        Get the attribute 'attr' from the wrapped object. If the
+        result is callable, call it.
         """
         attr = getattr(self.object, attr)
         if callable(attr):
@@ -41,16 +41,19 @@ class Node:
         """
         try:
             children = self._get_attr(self._children_attr)
-        except:  # yes, this is bad, but _get_attr can throw almost all exceptions
+        # yes, this is bad, but _get_attr can throw almost all exceptions
+        except:
             self._children_nodes = []
             return
         nodes = []
         for obj in children:
-            node = Node(obj, self.depth+1, self._id_attr, self._children_attr, self._expanded_nodes)
+            node = Node(obj, self.depth+1, self._id_attr,
+                        self._children_attr, self._expanded_nodes)
             nodes.append(node)
         self._children_nodes = nodes
 
-    def __init__(self, object, depth, id_attr, children_attr, expanded_nodes=[]):
+    def __init__(self, object, depth, id_attr, children_attr,
+                 expanded_nodes=[]):
         # attributes required by the interface
         self.object = object
         self.depth = depth
@@ -68,6 +71,9 @@ class Node:
         if recursive:
             for node in self.getChildrenNodes():
                 node.expand(1)
+
+    def collapse(self):
+        self.expanded = 0
 
     def getId(self):
         return self._get_attr(self._id_attr)
@@ -100,16 +106,17 @@ class ZopeTree(Node):
 
     __allow_access_to_unprotected_subobjects__ = 1
 
-    def __init__(self, root_object, id_attr='getId', children_attr='objectValues',
-                 request=None, request_variable='tree-expansion'):
+    def __init__(self, root_object, id_attr='getId',
+                 children_attr='objectValues', request=None,
+                 request_variable='tree-expansion', expanded_nodes=[]):
         tree_expansion = request.get(request_variable, "")
         if tree_expansion:
-            request.RESPONSE.setCookie(request_variable, tree_expansion) # set a cookie right away
+            # set a cookie right away
+            request.RESPONSE.setCookie(request_variable, tree_expansion)
             expanded_nodes = self.decodeTreeExpansion(tree_expansion)
-        else:
-            expanded_nodes = []
         
-        Node.__init__(self, root_object, 0, id_attr, children_attr, expanded_nodes)
+        Node.__init__(self, root_object, 0, id_attr, children_attr,
+                      expanded_nodes)
         self.expand()
 
     def encodeTreeExpansion(self, expanded_nodes):
@@ -129,7 +136,8 @@ class ZopeTree(Node):
             id = node.getId()
             expanded_nodes = self._expanded_nodes[:]
             if id in self._expanded_nodes:
-                # if the node is already expanded, the next step is collapsing it
+                # if the node is already expanded, the next step is
+                # collapsing it
                 expanded_nodes.remove(id)
             else:
                 # if it isn't, the next step is expanding it.

@@ -1,6 +1,6 @@
 
 """
-$Id: testZopeTree.py,v 1.2 2003/03/15 17:39:17 philipp Exp $
+$Id: testZopeTree.py,v 1.4 2003/04/28 22:46:13 philipp Exp $
 """
 
 import os, sys
@@ -13,13 +13,14 @@ from Products.ZopeTree import Node, ZopeTree
 
 ZopeTestCase.installProduct('ZopeTree')
 
-# simple object that can have an id an a set of children
+# simple object that can have an id and a set of children
 class Item:
     def __init__(self, id, children=[]):
         self.id = id
         self.children = children
 
-# function used to convert a set of nested tuples to items and children items.
+# function used to convert a set of nested tuples to items and
+# children items.
 def make_item_from_tuple(item_tuple, dict):
     children = []
     if len(item_tuple) > 1:
@@ -46,9 +47,11 @@ expanded_nodes = ['a', 'c']
 class NodeTest(ZopeTestCase.ZopeTestCase):
 
     def afterSetUp(self):
+        # this mapping will provide shortcuts to each object
         self.items = {}
         self.root_obj = make_item_from_tuple(tree, self.items)
-        self.root_node = Node(self.root_obj, 0, 'id', 'children', expanded_nodes)
+        self.root_node = Node(self.root_obj, 0, 'id', 'children',
+                              expanded_nodes)
 
     def afterClear(self):
         pass
@@ -57,6 +60,20 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
         """Verify interface implementation"""
         from Interface.Verify import verifyObject
         self.failUnless(verifyObject(INode, self.root_node))
+
+    def test_expand_collapse(self):
+        """Test node expansion/collapsion"""
+        root_node = self.root_node
+        # first the node is expanded
+        self.failUnless(root_node.expanded)
+        # now collapse it
+        root_node.collapse()
+        self.failIf(root_node.expanded)
+        # make sure there are no children nodes returned!
+        self.assertEqual(root_node.getChildrenNodes(), [])
+        # expand it again
+        root_node.expand()
+        self.failUnless(root_node.expanded)
 
     def test_children(self):
         """Test children"""
@@ -74,8 +91,8 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
         root_node = self.root_node
         # testing getFlatNodes()
         children = [node.object for node in root_node.getFlatNodes()]
-        # 'a' is not expected because the node on which getFlatNodes() is called
-        # is not in the list
+        # 'a' is not expected because the node on which getFlatNodes()
+        # is called is not in the list
         expected = [self.items[i] for i in "bcfg"]
         self.assertEqual(children, expected)
 
@@ -89,6 +106,8 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
     def afterSetUp(self):
         environ = os.environ.copy()
+        environ['SERVER_NAME'] = ""
+        environ['SERVER_PORT'] = ""
         response = HTTPResponse(stdout=StringIO())
         request = HTTPRequest(StringIO(""), environ, response)
         # emulate a cookie
@@ -113,8 +132,8 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
     def test_pre_expanded(self):
         """Test pre-expanded nodes"""
-        # 'a' is not expected because the node on which getFlatNodes() is called
-        # is not in the list
+        # 'a' is not expected because the node on which getFlatNodes()
+        # is called is not in the list
         expected = [self.items[i] for i in "bcfg"]
         # test against to getFlatNodes()
         flat = [node.object for node in self.tree.getFlatNodes()]

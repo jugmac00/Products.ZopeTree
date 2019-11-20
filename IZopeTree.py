@@ -5,12 +5,12 @@
 #
 # Copyright (c) 2001-2003 by Philipp "philiKON" von Weitershausen
 #
-# This software is distributed under the terms of the Mozilla Public License
-# (MPL)
+# This software is distributed under the terms of the Mozilla Public
+# License (MPL)
 #
 
 """
-$Id: IZopeTree.py,v 1.2 2003/03/15 08:57:53 philipp Exp $
+$Id: IZopeTree.py,v 1.4 2003/04/28 22:46:13 philipp Exp $
 """
 
 from Interface import Interface, Attribute
@@ -35,21 +35,28 @@ class INode(Interface):
 
         'depth' is the positional depth of the node in the tree
         
-        'id_attr' should point to an attribute/method name of 'object' (and all
-        other wrapped objects), giving each object a unique id in the tree.
+        'id_attr' should point to an attribute/method name of 'object'
+        (and all other wrapped objects), giving each object a unique
+        id in the tree.
 
-        'children_attr' should point to an attribute/method name of 'object'
-        containing/resulting object's children.
+        'children_attr' should point to an attribute/method name of
+        'object' containing/resulting object's children.
 
-        'expanded_nodes' is a list containing ids of nodes that are expanded
-        from the beginning.
+        'expanded_nodes' is a list containing ids of nodes that are
+        expanded from the beginning.
         """
 
     def expand(recursive=0):
         """
         Expand this node.
 
-        'recursive' can be set to true to expand all children nodes as well
+        'recursive' can be set to true to expand all children nodes as
+        well
+        """
+
+    def collapse():
+        """
+        Collapse this node.
         """
 
     def getId():
@@ -80,12 +87,13 @@ class IZopeTree(INode):
         """
         'root_object' is the root object of the tree.
 
-        'id_attr' and 'children_attr': see docstring for Node.__init__().
+        'id_attr' and 'children_attr': see docstring for
+        Node.__init__().
 
         'request' is the HTTP request.
 
-        'request_variable' is the name of a request variable that contains
-        the tree expansion information.
+        'request_variable' is the name of a request variable that
+        contains the tree expansion information.
         """
 
     def encodeTreeExpansion(expanded_nodes):
@@ -100,7 +108,7 @@ class IZopeTree(INode):
 
     def getFlatDicts():
         """
-        Works like Node.getFlatNodes() except that it does not return a list
-        of nodes but a list of dictionaries.
+        Works like Node.getFlatNodes() except that it does not return
+        a list of nodes but a list of dictionaries.
         """
         

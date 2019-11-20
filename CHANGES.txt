@@ -1,10 +1,20 @@
 
 CHANGES
 
+v1.2 (2003-04-30)
+
+  * Added optional 'expanded_nodes' argument to ZopeTree constructor.
+    Thanks to Jean Jordaan for suggesting this.
+
+  * Changed signature of TreeObjectWrapper constructor. 'path' is an
+    optional argument now.
+
+  * Added collapse() method to ZopeTree.Node.
+
 v1.1 (2003-03-17)
 
   * It now works on Zope 2.4.
 
-  * The unit test was not converted from RevisionManager yet.
+  * The unit test was not converted from RevisionManager yet. Fixed.
 
 v1.0 (2003-03-14)
