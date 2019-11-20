@@ -1,6 +1,16 @@
 
 CHANGES
 
+v1.3 (2003-05-30)
+
+  * Setting a cookie with ZopeTree is optional now. Simply pass
+    set_cookie=0 to the ZopeTree constructor.
+
+  * Fixed a security hole in the tree state decompressing
+    mechanism. Previous versions were vulnerable to a denial of
+    service attack using large tree states. Thanks go to Jamie Heilman
+    for reporting the bug and Toby Dickenson for providing a fix.
+
 v1.2 (2003-04-30)
 
   * Added optional 'expanded_nodes' argument to ZopeTree constructor.

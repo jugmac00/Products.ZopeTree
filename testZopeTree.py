@@ -1,6 +1,6 @@
 
 """
-$Id: testZopeTree.py,v 1.4 2003/04/28 22:46:13 philipp Exp $
+$Id: testZopeTree.py,v 1.5 2003/05/30 15:13:02 philipp Exp $
 """
 
 import os, sys
@@ -110,11 +110,16 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         environ['SERVER_PORT'] = ""
         response = HTTPResponse(stdout=StringIO())
         request = HTTPRequest(StringIO(""), environ, response)
+        self.varname = 'tree-expansion'
         # emulate a cookie
-        request.other['tree-expansion'] = b2a(zlib.compress(":".join(expanded_nodes)))
+        request.other[self.varname] = b2a(
+            zlib.compress(":".join(expanded_nodes))
+            )
+        self.request = request
         self.items = {}
         self.root_obj = make_item_from_tuple(tree, self.items)
-        self.tree = ZopeTree(self.root_obj, 'id', 'children', request)
+        self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
+                             self.varname)
         
     def afterClear(self):
         pass
@@ -149,6 +154,25 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         self.assertEqual(bdict['depth'], 1)
         self.failUnless(bdict['children'])
         self.failUnless(bdict['object'] is self.items['b'])
+
+    def test_cookie(self):
+        """Test cookies"""
+        # by default, the tree sets a cookie, so test for that
+        request = self.request
+        response = request.RESPONSE
+        self.failUnless(response.cookies.has_key(self.varname))
+
+        # now make a tree that doesn't set a cookie
+        treeexp = response.cookies[self.varname]['value']
+        environ = os.environ.copy()
+        environ['SERVER_NAME'] = ""
+        environ['SERVER_PORT'] = ""
+        response = HTTPResponse(stdout=StringIO())
+        request = HTTPRequest(StringIO(""), environ, response)
+        request.other[self.varname] = treeexp
+        self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
+                             self.varname, set_cookie=0)
+        self.failIf(response.cookies.has_key(self.varname))
 
 if __name__ == '__main__':
     framework(descriptions=1, verbosity=2)

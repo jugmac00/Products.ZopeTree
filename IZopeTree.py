@@ -10,7 +10,7 @@
 #
 
 """
-$Id: IZopeTree.py,v 1.4 2003/04/28 22:46:13 philipp Exp $
+$Id: IZopeTree.py,v 1.5 2003/05/30 15:13:02 philipp Exp $
 """
 
 from Interface import Interface, Attribute
@@ -83,7 +83,7 @@ class INode(Interface):
 class IZopeTree(INode):
 
     def __init__(root_object, id_attr='', children_attr='', request=None,
-                 request_variable=''):
+                 request_variable='', expanded_nodes=[], set_cookie=1):
         """
         'root_object' is the root object of the tree.
 

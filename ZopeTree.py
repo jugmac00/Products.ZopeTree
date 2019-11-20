@@ -10,7 +10,7 @@
 #
 
 """
-$Id: ZopeTree.py,v 1.6 2003/04/28 22:46:13 philipp Exp $
+$Id: ZopeTree.py,v 1.8 2003/05/30 15:13:02 philipp Exp $
 """
 
 import zlib
@@ -100,6 +100,18 @@ class Node:
             nodes += node.getFlatNodes()
         return nodes
 
+def safe_decompress(input, max_size=10240):
+    # this sillyness can go away in python 2.2
+    decomp = zlib.decompressobj()
+    output = ''
+    while input:
+        fragment_size = max(1, (max_size-len(output))/1000)
+        fragment, input = input[:fragment_size], input[fragment_size:]
+        output += decomp.decompress(fragment)
+        if len(output) > max_size:
+            raise ValueError('Compressed input too large')
+    return output + decomp.flush()
+
 class ZopeTree(Node):
 
     __implements__ = IZopeTree
@@ -108,11 +120,13 @@ class ZopeTree(Node):
 
     def __init__(self, root_object, id_attr='getId',
                  children_attr='objectValues', request=None,
-                 request_variable='tree-expansion', expanded_nodes=[]):
+                 request_variable='tree-expansion', expanded_nodes=[],
+                 set_cookie=1):
         tree_expansion = request.get(request_variable, "")
         if tree_expansion:
-            # set a cookie right away
-            request.RESPONSE.setCookie(request_variable, tree_expansion)
+            if set_cookie:
+                # set a cookie right away
+                request.RESPONSE.setCookie(request_variable, tree_expansion)
             expanded_nodes = self.decodeTreeExpansion(tree_expansion)
         
         Node.__init__(self, root_object, 0, id_attr, children_attr,
@@ -126,7 +140,7 @@ class ZopeTree(Node):
 
     def decodeTreeExpansion(self, tree_expansion):
         string = a2b(tree_expansion)
-        string = zlib.decompress(string)
+        string = safe_decompress(string)
         return string.split(":")
 
     def getFlatDicts(self):
