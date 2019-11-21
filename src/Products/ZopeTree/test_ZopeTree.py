@@ -152,7 +152,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         # by default, the tree sets a cookie, so test for that
         request = self.request
         response = request.RESPONSE
-        self.assertTrue(response.cookies.has_key(self.varname))
+        self.assertTrue(self.varname in response.cookies)
 
         # now make a tree that doesn't set a cookie
         treeexp = response.cookies[self.varname]['value']
@@ -162,7 +162,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         request.other[self.varname] = treeexp
         self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
                              self.varname, set_cookie=0)
-        self.assertFalse(response.cookies.has_key(self.varname))
+        self.assertFalse(self.varname in response.cookies)
 
 
 def test_suite():
