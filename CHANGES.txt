@@ -1,6 +1,10 @@
 
 CHANGES
 
+v1.3.1 (2003-08-21)
+
+  * Fixed tree_menu example. Thanks to Andy McKay for the patch.
+
 v1.3 (2003-05-30)
 
   * Setting a cookie with ZopeTree is optional now. Simply pass

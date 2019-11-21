@@ -39,12 +39,12 @@
     </a>
   </td>
 
-  <td width="16" tal:define="object node/object/object">
+  <td width="16" tal:define="object node/object">
     <img src="" title="" alt="" border="0"
-         tal:condition="object/icon"
-         tal:attributes="src node/object/icon;
-                         title node/object/meta_type;
-                         alt node/object/meta_type" />
+         tal:condition="object/icon|nothing"
+         tal:attributes="src object/icon;
+                         title object/meta_type;
+                         alt object/meta_type" />
   </td>
 
   <td colspan="1" class="list-item"
