@@ -5,6 +5,5 @@ python:
 
 install:
     pip install -U pip pytest
-    pip install -e .
 
 script: pytest
