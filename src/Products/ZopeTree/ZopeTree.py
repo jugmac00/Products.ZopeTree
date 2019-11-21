@@ -43,7 +43,7 @@ class Node:
         try:
             children = self._get_attr(self._children_attr)
         # yes, this is bad, but _get_attr can throw almost all exceptions
-        except:
+        except:  # noqa
             self._children_nodes = []
             return
         nodes = []
@@ -158,14 +158,14 @@ class ZopeTree(Node):
             else:
                 # if it isn't, the next step is expanding it.
                 expanded_nodes += [id]
-            flatdicts.append( {
+            flatdicts.append({
                 'id':             id,
                 'expanded':       node.expanded,
                 'depth':          node.depth,
                 'children':       node.hasChildren(),
                 'tree-expansion': self.encodeTreeExpansion(expanded_nodes),
                 'object':         node.object
-                } )
+                })
             if node.depth > self.maxdepth:
                 self.maxdepth = node.depth
         return flatdicts

@@ -7,13 +7,12 @@
 # (MPL)
 #
 
-from zope.interface import Interface
 from AccessControl import allow_module
 
 __allow_access_to_unprotected_subobjects__ = 1
 __roles__ = None
 
 # make ZopeTree module accessible from PythonScript and ZPT
-from Products.ZopeTree.ZopeTree import ZopeTree, Node
-from Products.ZopeTree.TreeObjectWrapper import TreeObjectWrapper
+from Products.ZopeTree.ZopeTree import ZopeTree, Node  # noqa
+from Products.ZopeTree.TreeObjectWrapper import TreeObjectWrapper  # noqa
 allow_module('Products.ZopeTree')

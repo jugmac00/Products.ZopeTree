@@ -1,3 +1,4 @@
+"""Test suite."""
 from Products.ZopeTree import Node, ZopeTree
 from Products.ZopeTree.IZopeTree import INode, IZopeTree
 from StringIO import StringIO
@@ -18,6 +19,7 @@ class Item:
         self.id = id
         self.children = children
 
+
 # function used to convert a set of nested tuples to items and
 # children items.
 def make_item_from_tuple(item_tuple, dict):
@@ -29,19 +31,13 @@ def make_item_from_tuple(item_tuple, dict):
     dict[item_tuple[0]] = item
     return item
 
+
 tree = ('a', [
-           ('b', [
-               ('d',), ('e',)
-               ]),
-           ('c', [
-               ('f', [
-                   ('h',), ('i',)
-                   ]),
-               ('g')]
-           ) ]
-       )
+    ('b', [('d',), ('e',)]), ('c', [('f', [('h',), ('i',)]), ('g')])])
+
 
 expanded_nodes = ['a', 'c']
+
 
 class NodeTest(ZopeTestCase.ZopeTestCase):
 

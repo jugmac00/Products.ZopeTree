@@ -13,6 +13,7 @@ $Id: TreeObjectWrapper.py,v 1.5 2003/04/30 10:01:55 philipp Exp $
 
 import posixpath
 
+
 class TreeObjectWrapper:
     """
     A wrapper around Zope objects to be more flexible when displaying

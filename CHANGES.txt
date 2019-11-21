@@ -17,6 +17,8 @@ v2.0.unreleased
 
   * replace license file format (HTML->txt)
 
+  * add flake8 and apply it
+
 v1.3.1 (2003-08-21)
 
   * Fixed tree_menu example. Thanks to Andy McKay for the patch.

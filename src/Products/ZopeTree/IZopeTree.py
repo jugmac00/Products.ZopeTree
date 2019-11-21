@@ -9,11 +9,8 @@
 # License (MPL)
 #
 
-"""
-$Id: IZopeTree.py,v 1.5 2003/05/30 15:13:02 philipp Exp $
-"""
-
 from zope.interface import Interface, Attribute
+
 
 class INode(Interface):
 
@@ -34,7 +31,7 @@ class INode(Interface):
         'object' is the object that is being wrapped
 
         'depth' is the positional depth of the node in the tree
-        
+
         'id_attr' should point to an attribute/method name of 'object'
         (and all other wrapped objects), giving each object a unique
         id in the tree.
@@ -79,7 +76,8 @@ class INode(Interface):
         Return a flat list of nodes in the tree. Children of expanded
         nodes are shown.
         """
-    
+
+
 class IZopeTree(INode):
 
     def __init__(root_object, id_attr='', children_attr='', request=None,
@@ -111,4 +109,3 @@ class IZopeTree(INode):
         Works like Node.getFlatNodes() except that it does not return
         a list of nodes but a list of dictionaries.
         """
-        
