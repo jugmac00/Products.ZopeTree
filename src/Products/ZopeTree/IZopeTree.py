@@ -13,7 +13,7 @@
 $Id: IZopeTree.py,v 1.5 2003/05/30 15:13:02 philipp Exp $
 """
 
-from Interface import Interface, Attribute
+from zope.interface import Interface, Attribute
 
 class INode(Interface):
 
