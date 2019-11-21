@@ -136,14 +136,18 @@ class ZopeTree(Node):
         self.expand()
 
     def encodeTreeExpansion(self, expanded_nodes):
-        string = ":".join(expanded_nodes)
-        string = zlib.compress(string)
-        return b2a(string)
+        tree_expansion = ":".join(expanded_nodes)
+        if not isinstance(tree_expansion, bytes):
+            tree_expansion = tree_expansion.encode("utf-8")
+        tree_expansion = zlib.compress(tree_expansion)
+        return b2a(tree_expansion)
 
     def decodeTreeExpansion(self, tree_expansion):
-        string = a2b(tree_expansion)
-        string = safe_decompress(string)
-        return string.split(":")
+        tree_expansion = a2b(tree_expansion)
+        tree_expansion = zlib.decompress(tree_expansion)
+        if not isinstance(tree_expansion, str):
+            tree_expansion = tree_expansion.decode('utf-8')
+        return tree_expansion.split(":")
 
     def getFlatDicts(self):
         flatdicts = []

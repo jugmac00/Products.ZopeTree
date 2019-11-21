@@ -100,8 +100,9 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         request = HTTPRequest(BytesIO(), environ, response)
         self.varname = 'tree-expansion'
         # emulate a cookie
+        tree_expansion = (":".join(expanded_nodes).encode("utf-8"))
         request.other[self.varname] = b2a(
-            zlib.compress(":".join(expanded_nodes))
+            zlib.compress(tree_expansion)
             )
         self.request = request
         self.items = {}

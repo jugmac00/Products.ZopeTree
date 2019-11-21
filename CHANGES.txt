@@ -19,6 +19,8 @@ v2.0.unreleased
 
   * add flake8 and apply it
 
+  * add support for Python 3.6, 3.7, 3.8
+
 v1.3.1 (2003-08-21)
 
   * Fixed tree_menu example. Thanks to Andy McKay for the patch.
