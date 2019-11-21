@@ -1,7 +1,7 @@
 """Test suite."""
 from Products.ZopeTree import Node, ZopeTree
 from Products.ZopeTree.IZopeTree import INode, IZopeTree
-from StringIO import StringIO
+from six import BytesIO
 from Testing import ZopeTestCase
 from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse
@@ -96,8 +96,8 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
     def afterSetUp(self):
         environ = {'SERVER_NAME': "", 'SERVER_PORT': '0'}
-        response = HTTPResponse(stdout=StringIO())
-        request = HTTPRequest(StringIO(u""), environ, response)
+        response = HTTPResponse(stdout=BytesIO())
+        request = HTTPRequest(BytesIO(), environ, response)
         self.varname = 'tree-expansion'
         # emulate a cookie
         request.other[self.varname] = b2a(
@@ -153,8 +153,8 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         # now make a tree that doesn't set a cookie
         treeexp = response.cookies[self.varname]['value']
         environ = {'SERVER_NAME': "", 'SERVER_PORT': '0'}
-        response = HTTPResponse(stdout=StringIO())
-        request = HTTPRequest(StringIO(u""), environ, response)
+        response = HTTPResponse(stdout=BytesIO())
+        request = HTTPRequest(BytesIO(), environ, response)
         request.other[self.varname] = treeexp
         self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
                              self.varname, set_cookie=0)

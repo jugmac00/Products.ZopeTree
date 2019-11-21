@@ -12,6 +12,7 @@ setup(name='Products.ZopeTree',
       package_dir={'': 'src'},
       install_requires=[
         'setuptools',
+        'six',
         'AccessControl',
         'Zope',
         'zope.interface',
