@@ -17,7 +17,7 @@ import zlib
 import zope.interface
 from ZTUtils.Tree import b2a, a2b
 
-from IZopeTree import IZopeTree, INode
+from Products.ZopeTree.IZopeTree import IZopeTree, INode
 
 
 @zope.interface.implementer(INode)
