@@ -1,6 +1,6 @@
 from Products.ZopeTree import Node, ZopeTree
 from Products.ZopeTree.IZopeTree import INode, IZopeTree
-from io import StringIO
+from StringIO import StringIO
 from Testing import ZopeTestCase
 from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse

@@ -1,6 +1,22 @@
 
 CHANGES
 
+v2.0.unreleased
+
+  * add tox environment
+
+  * restructure to use a src directory
+
+  * add a Travis configuration
+
+  * make tests run on Python 2.7 and in a Zope 4 environment
+
+  * add a setup.py
+
+  * fix deprecation warnings
+
+  * replace license file format (HTML->txt)
+
 v1.3.1 (2003-08-21)
 
   * Fixed tree_menu example. Thanks to Andy McKay for the patch.
