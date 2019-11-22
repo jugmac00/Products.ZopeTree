@@ -25,7 +25,7 @@ setup(name='Products.ZopeTree',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
-      ]
+      ],
       packages=find_packages('src'),
       namespace_packages=['Products'],
       package_dir={'': 'src'},
