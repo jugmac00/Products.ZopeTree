@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(name='Products.ZopeTree',
-      version='2.0.dev3',
+      version='2.0.dev4',
       url='https://github.com/jugmac00/Products.ZopeTree',
       project_urls={
           'Issue Tracker': 'https://github.com/jugmac00/Products.ZopeTree/issues',
@@ -25,7 +25,7 @@ setup(name='Products.ZopeTree',
         'Framework :: Zope :: 4',
         'Framework :: Zope :: 5',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: Mozilla Public License 1.1',
+        'License :: OSI Approved :: Mozilla Public License 1.1 (MPL 1.1)',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
