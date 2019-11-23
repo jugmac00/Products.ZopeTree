@@ -24,8 +24,8 @@ try:
     from AccessControl import allow_module
 except ImportError:
     # Zope <2.5
-    import AccessControl
     from AccessControl import ModuleSecurityInfo
+
     def allow_module(module_name):
         ModuleSecurityInfo(module_name).setDefaultAccess(1)
         dot = module_name.find('.')
@@ -37,6 +37,6 @@ __allow_access_to_unprotected_subobjects__ = 1
 __roles__ = None
 
 # make ZopeTree module accessible from PythonScript and ZPT
-from ZopeTree import ZopeTree, Node
-from TreeObjectWrapper import TreeObjectWrapper
+from ZopeTree import ZopeTree, Node  # noqa
+from TreeObjectWrapper import TreeObjectWrapper  # noqa
 allow_module('Products.ZopeTree')
