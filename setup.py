@@ -3,13 +3,12 @@ from setuptools import find_packages
 from setuptools import setup
 
 setup(name='Products.ZopeTree',
-      version='2.0.dev5',
+      version='2.0.dev6',
       url='https://github.com/jugmac00/Products.ZopeTree',
       project_urls={
           'Issue Tracker': 'https://github.com/jugmac00/Products.ZopeTree/issues',
           'Sources': 'https://github.com/jugmac00/Products.ZopeTree',
       },      
-      license='MPL 1.1',
       description="ZopeTree is a light-weight tree implementation.",
       long_description=open('README.md').read(),
       long_description_content_type='text/markdown',
