@@ -2,12 +2,8 @@ from os import path
 from setuptools import find_packages
 from setuptools import setup
 
-this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(name='Products.ZopeTree',
-      version='2.0.dev4',
+      version='2.0.dev5',
       url='https://github.com/jugmac00/Products.ZopeTree',
       project_urls={
           'Issue Tracker': 'https://github.com/jugmac00/Products.ZopeTree/issues',
@@ -15,7 +11,7 @@ setup(name='Products.ZopeTree',
       },      
       license='MPL 1.1',
       description="ZopeTree is a light-weight tree implementation.",
-      long_description=long_description,
+      long_description=open('README.md').read(),
       long_description_content_type='text/markdown',
       maintainer='Juergen Gmach',
       maintainer_email="juergen.gmach@googlemail.com",
