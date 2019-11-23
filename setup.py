@@ -2,7 +2,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 setup(name='Products.ZopeTree',
-      version='2.0.dev',
+      version='2.0.dev0',
       url='https://github.com/jugmac00/Products.ZopeTree',
       project_urls={
           'Issue Tracker': 'https://github.com/jugmac00/Products.ZopeTree/issues',
@@ -10,7 +10,8 @@ setup(name='Products.ZopeTree',
       },      
       license='Mozilla Public License 1.1 (MPL 1.1)',
       description="ZopeTree is a light-weight tree implementation.",
-      author='Philipp von Weitershausen and Contributors',
+      maintainer='Juergen Gmach',
+      maintainer_email="juergen.gmach@googlemail.com",
       long_description="ZopeTree is a light-weight tree implementation.",
       classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -40,4 +41,5 @@ setup(name='Products.ZopeTree',
       ],
       include_package_data=True,
       zip_safe=False,
+      options={"bdist_wheel": {"universal": "1"}},
       )
