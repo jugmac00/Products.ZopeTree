@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 setup(name='Products.ZopeTree',
-      version='2.0',
+      version='2.0.1.dev0',
       url='https://github.com/jugmac00/Products.ZopeTree',
       project_urls={
           'Issue Tracker': 'https://github.com/jugmac00/Products.ZopeTree/issues',

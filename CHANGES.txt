@@ -1,6 +1,10 @@
 
 CHANGES
 
+v2.0.1 unreleased
+
+  * fix link to PyPi badge
+
 v2.0 (2019-11-23)
 
   * add tox environment
