@@ -1,7 +1,7 @@
 
 CHANGES
 
-v2.0.1 unreleased
+v2.0.1
 
   * fix link to PyPi badge
 
