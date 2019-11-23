@@ -1,0 +1,11 @@
+include LICENSE *.rst *.toml *.yml *.yaml *.txt
+
+# tests
+include tox.ini
+
+# from suggested includes by check-manifest
+include *.py
+recursive-include src *.py
+
+# examples
+recursive-include examples *.pt
