@@ -1,6 +1,10 @@
 
 CHANGES
 
+v2.0.2.unreleased
+
+  * enable pre-commit hooks
+
 v2.0.1
 
   * fix link to PyPi badge
