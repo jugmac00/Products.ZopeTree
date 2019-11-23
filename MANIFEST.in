@@ -7,5 +7,8 @@ include tox.ini
 include *.py
 recursive-include src *.py
 
+# linting
+include .flake8
+
 # examples
 recursive-include examples *.pt
