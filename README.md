@@ -1,9 +1,12 @@
 [![Build Status](https://travis-ci.com/jugmac00/Products.ZopeTree.svg?branch=master)](https://travis-ci.com/jugmac00/Products.ZopeTree)
 [![Current version on PyPI](https://img.shields.io/pypi/v/Products.ZopeTree.svg)](https://pypi.org/project/Products.ZopeTree/)
+[![License: MPL 1.1](https://img.shields.io/badge/License-MPL%201.1-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
 # Products.ZopeTree
 
-ZopeTree is a light-weight tree implementation, mainly for use with ZPT. Created by Philipp "philiKON" von Weitershausen.
+ZopeTree is a light-weight tree implementation, mainly for use with ZPT.
+
+Created by Philipp "philiKON" von Weitershausen.
 
 ## Scope
 
