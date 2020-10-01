@@ -1,8 +1,8 @@
 """Test suite."""
 import unittest
 import zlib
+from io import BytesIO
 
-from six import BytesIO
 from Testing import ZopeTestCase
 from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse
