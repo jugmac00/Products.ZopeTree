@@ -25,7 +25,7 @@ class TreeObjectWrapper:
 
     __allow_access_to_unprotected_subobjects__ = 1
 
-    def __init__(self, obj, path=''):
+    def __init__(self, obj, path=""):
         self.path = path
         self.object = obj
         self.id = obj.getId()

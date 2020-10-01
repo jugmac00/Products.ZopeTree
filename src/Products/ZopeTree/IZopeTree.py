@@ -9,22 +9,28 @@
 # License (MPL)
 #
 
-from zope.interface import Interface, Attribute
+from zope.interface import Attribute, Interface
 
 
 class INode(Interface):
 
-    object = Attribute("""
+    object = Attribute(
+        """
         The object that is being wrapped.
-        """)
+        """
+    )
 
-    depth = Attribute("""
+    depth = Attribute(
+        """
         The positional depth of this node in the tree.
-        """)
+        """
+    )
 
-    expanded = Attribute("""
+    expanded = Attribute(
+        """
         True if this node is expanded.
-        """)
+        """
+    )
 
     def __init__(object, depth, id_attr, children_attr, expanded_nodes=[]):
         """
@@ -79,9 +85,15 @@ class INode(Interface):
 
 
 class IZopeTree(INode):
-
-    def __init__(root_object, id_attr='', children_attr='', request=None,
-                 request_variable='', expanded_nodes=[], set_cookie=1):
+    def __init__(
+        root_object,
+        id_attr="",
+        children_attr="",
+        request=None,
+        request_variable="",
+        expanded_nodes=[],
+        set_cookie=1,
+    ):
         """
         'root_object' is the root object of the tree.
 

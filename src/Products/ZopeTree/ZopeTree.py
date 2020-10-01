@@ -14,10 +14,11 @@ $Id: ZopeTree.py,v 1.8 2003/05/30 15:13:02 philipp Exp $
 """
 
 import zlib
-import zope.interface
-from ZTUtils.Tree import b2a, a2b
 
-from Products.ZopeTree.IZopeTree import IZopeTree, INode
+import zope.interface
+from ZTUtils.Tree import a2b, b2a
+
+from Products.ZopeTree.IZopeTree import INode, IZopeTree
 
 
 @zope.interface.implementer(INode)
@@ -48,13 +49,17 @@ class Node:
             return
         nodes = []
         for obj in children:
-            node = Node(obj, self.depth+1, self._id_attr,
-                        self._children_attr, self._expanded_nodes)
+            node = Node(
+                obj,
+                self.depth + 1,
+                self._id_attr,
+                self._children_attr,
+                self._expanded_nodes,
+            )
             nodes.append(node)
         self._children_nodes = nodes
 
-    def __init__(self, object, depth, id_attr, children_attr,
-                 expanded_nodes=[]):
+    def __init__(self, object, depth, id_attr, children_attr, expanded_nodes=[]):
         # attributes required by the interface
         self.object = object
         self.depth = depth
@@ -90,7 +95,7 @@ class Node:
             return []
         # children nodes are not created until they are explicitly requested
         # through this function
-        if not hasattr(self, '_children_nodes'):
+        if not hasattr(self, "_children_nodes"):
             self._create_children_nodes()
         return self._children_nodes[:]
 
@@ -105,13 +110,13 @@ class Node:
 def safe_decompress(input, max_size=10240):
     # this sillyness can go away in python 2.2
     decomp = zlib.decompressobj()
-    output = ''
+    output = ""
     while input:
-        fragment_size = max(1, (max_size-len(output))/1000)
+        fragment_size = max(1, (max_size - len(output)) / 1000)
         fragment, input = input[:fragment_size], input[fragment_size:]
         output += decomp.decompress(fragment)
         if len(output) > max_size:
-            raise ValueError('Compressed input too large')
+            raise ValueError("Compressed input too large")
     return output + decomp.flush()
 
 
@@ -120,10 +125,16 @@ class ZopeTree(Node):
 
     __allow_access_to_unprotected_subobjects__ = 1
 
-    def __init__(self, root_object, id_attr='getId',
-                 children_attr='objectValues', request=None,
-                 request_variable='tree-expansion', expanded_nodes=[],
-                 set_cookie=1):
+    def __init__(
+        self,
+        root_object,
+        id_attr="getId",
+        children_attr="objectValues",
+        request=None,
+        request_variable="tree-expansion",
+        expanded_nodes=[],
+        set_cookie=1,
+    ):
         tree_expansion = request.get(request_variable, "")
         if tree_expansion:
             if set_cookie:
@@ -131,8 +142,7 @@ class ZopeTree(Node):
                 request.RESPONSE.setCookie(request_variable, tree_expansion)
             expanded_nodes = self.decodeTreeExpansion(tree_expansion)
 
-        Node.__init__(self, root_object, 0, id_attr, children_attr,
-                      expanded_nodes)
+        Node.__init__(self, root_object, 0, id_attr, children_attr, expanded_nodes)
         self.expand()
 
     def encodeTreeExpansion(self, expanded_nodes):
@@ -146,7 +156,7 @@ class ZopeTree(Node):
         tree_expansion = a2b(tree_expansion)
         tree_expansion = zlib.decompress(tree_expansion)
         if not isinstance(tree_expansion, str):
-            tree_expansion = tree_expansion.decode('utf-8')
+            tree_expansion = tree_expansion.decode("utf-8")
         return tree_expansion.split(":")
 
     def getFlatDicts(self):
@@ -162,14 +172,16 @@ class ZopeTree(Node):
             else:
                 # if it isn't, the next step is expanding it.
                 expanded_nodes += [id]
-            flatdicts.append({
-                'id':             id,
-                'expanded':       node.expanded,
-                'depth':          node.depth,
-                'children':       node.hasChildren(),
-                'tree-expansion': self.encodeTreeExpansion(expanded_nodes),
-                'object':         node.object
-                })
+            flatdicts.append(
+                {
+                    "id": id,
+                    "expanded": node.expanded,
+                    "depth": node.depth,
+                    "children": node.hasChildren(),
+                    "tree-expansion": self.encodeTreeExpansion(expanded_nodes),
+                    "object": node.object,
+                }
+            )
             if node.depth > self.maxdepth:
                 self.maxdepth = node.depth
         return flatdicts

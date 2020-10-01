@@ -1,16 +1,17 @@
 """Test suite."""
-from Products.ZopeTree import Node, ZopeTree
-from Products.ZopeTree.IZopeTree import INode, IZopeTree
+import unittest
+import zlib
+
 from six import BytesIO
 from Testing import ZopeTestCase
 from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse
 from ZTUtils.Tree import b2a
-import unittest
-import zlib
 
+from Products.ZopeTree import Node, ZopeTree
+from Products.ZopeTree.IZopeTree import INode, IZopeTree
 
-ZopeTestCase.installProduct('ZopeTree')
+ZopeTestCase.installProduct("ZopeTree")
 
 
 # simple object that can have an id and a set of children
@@ -32,21 +33,18 @@ def make_item_from_tuple(item_tuple, dict):
     return item
 
 
-tree = ('a', [
-    ('b', [('d',), ('e',)]), ('c', [('f', [('h',), ('i',)]), ('g')])])
+tree = ("a", [("b", [("d",), ("e",)]), ("c", [("f", [("h",), ("i",)]), ("g")])])
 
 
-expanded_nodes = ['a', 'c']
+expanded_nodes = ["a", "c"]
 
 
 class NodeTest(ZopeTestCase.ZopeTestCase):
-
     def afterSetUp(self):
         # this mapping will provide shortcuts to each object
         self.items = {}
         self.root_obj = make_item_from_tuple(tree, self.items)
-        self.root_node = Node(self.root_obj, 0, 'id', 'children',
-                              expanded_nodes)
+        self.root_node = Node(self.root_obj, 0, "id", "children", expanded_nodes)
 
     def afterClear(self):
         pass
@@ -54,6 +52,7 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
     def test_verify_interface(self):
         """Verify interface implementation"""
         from zope.interface.verify import verifyObject
+
         self.assertTrue(verifyObject(INode, self.root_node))
 
     def test_expand_collapse(self):
@@ -78,7 +77,7 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
 
         # testing getChildrenNodes()
         children = [node.object for node in root_node.getChildrenNodes()]
-        expected = [self.items['b'], self.items['c']]
+        expected = [self.items["b"], self.items["c"]]
         self.assertEqual(children, expected)
 
     def test_flat(self):
@@ -93,22 +92,18 @@ class NodeTest(ZopeTestCase.ZopeTestCase):
 
 
 class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
-
     def afterSetUp(self):
-        environ = {'SERVER_NAME': "", 'SERVER_PORT': '0'}
+        environ = {"SERVER_NAME": "", "SERVER_PORT": "0"}
         response = HTTPResponse(stdout=BytesIO())
         request = HTTPRequest(BytesIO(), environ, response)
-        self.varname = 'tree-expansion'
+        self.varname = "tree-expansion"
         # emulate a cookie
-        tree_expansion = (":".join(expanded_nodes).encode("utf-8"))
-        request.other[self.varname] = b2a(
-            zlib.compress(tree_expansion)
-            )
+        tree_expansion = ":".join(expanded_nodes).encode("utf-8")
+        request.other[self.varname] = b2a(zlib.compress(tree_expansion))
         self.request = request
         self.items = {}
         self.root_obj = make_item_from_tuple(tree, self.items)
-        self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
-                             self.varname)
+        self.tree = ZopeTree(self.root_obj, "id", "children", request, self.varname)
 
     def afterClear(self):
         pass
@@ -116,6 +111,7 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
     def test_verify_interface(self):
         """Verify interface implementation"""
         from zope.interface.verify import verifyObject
+
         self.assertTrue(verifyObject(IZopeTree, self.tree))
 
     def test_encode_tree_expansion(self):
@@ -138,11 +134,11 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         flatdicts = self.tree.getFlatDicts()
         self.assertEqual(len(flatdicts), len(self.tree.getFlatNodes()))
         bdict = flatdicts[0]
-        self.assertEqual(bdict['id'], 'b')
-        self.assertFalse(bdict['expanded'])
-        self.assertEqual(bdict['depth'], 1)
-        self.assertTrue(bdict['children'])
-        self.assertTrue(bdict['object'] is self.items['b'])
+        self.assertEqual(bdict["id"], "b")
+        self.assertFalse(bdict["expanded"])
+        self.assertEqual(bdict["depth"], 1)
+        self.assertTrue(bdict["children"])
+        self.assertTrue(bdict["object"] is self.items["b"])
 
     def test_cookie(self):
         """Test cookies"""
@@ -152,13 +148,14 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
         self.assertTrue(self.varname in response.cookies)
 
         # now make a tree that doesn't set a cookie
-        treeexp = response.cookies[self.varname]['value']
-        environ = {'SERVER_NAME': "", 'SERVER_PORT': '0'}
+        treeexp = response.cookies[self.varname]["value"]
+        environ = {"SERVER_NAME": "", "SERVER_PORT": "0"}
         response = HTTPResponse(stdout=BytesIO())
         request = HTTPRequest(BytesIO(), environ, response)
         request.other[self.varname] = treeexp
-        self.tree = ZopeTree(self.root_obj, 'id', 'children', request,
-                             self.varname, set_cookie=0)
+        self.tree = ZopeTree(
+            self.root_obj, "id", "children", request, self.varname, set_cookie=0
+        )
         self.assertFalse(self.varname in response.cookies)
 
 
