@@ -32,7 +32,6 @@ setup(
     install_requires=[
         "Zope",
         "setuptools",
-        "six",
         "AccessControl",
         "zope.interface",
         "zope.testing",
