@@ -1,3 +1,6 @@
+"""
+isort:skip
+"""
 #
 # ZopeTree
 #
@@ -12,7 +15,9 @@ from AccessControl import allow_module
 __allow_access_to_unprotected_subobjects__ = 1
 __roles__ = None
 
-# make ZopeTree module accessible from PythonScript and ZPT
-from Products.ZopeTree.ZopeTree import ZopeTree, Node  # noqa
 from Products.ZopeTree.TreeObjectWrapper import TreeObjectWrapper  # noqa
-allow_module('Products.ZopeTree')
+
+# make ZopeTree module accessible from PythonScript and ZPT
+from Products.ZopeTree.ZopeTree import Node, ZopeTree  # noqa  # isort:skip
+
+allow_module("Products.ZopeTree")
