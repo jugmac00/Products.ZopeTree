@@ -7,6 +7,11 @@ python:
   - "3.8"
 
 install:
-    pip install -e .
+  - pip install -U pip
+  - pip install -e .
+  - pip install coveralls
 
-script: pytest
+script: pytest --cov-report html --cov=src/Products/ZopeTree
+
+after_success:
+  - coveralls
