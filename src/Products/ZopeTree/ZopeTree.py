@@ -8,17 +8,17 @@
 # This software is distributed under the terms of the Mozilla Public
 # License (MPL)
 #
-
 """
 $Id: ZopeTree.py,v 1.8 2003/05/30 15:13:02 philipp Exp $
 """
-
 import zlib
 
 import zope.interface
-from ZTUtils.Tree import a2b, b2a
+from ZTUtils.Tree import a2b
+from ZTUtils.Tree import b2a
 
-from Products.ZopeTree.IZopeTree import INode, IZopeTree
+from Products.ZopeTree.IZopeTree import INode
+from Products.ZopeTree.IZopeTree import IZopeTree
 
 
 @zope.interface.implementer(INode)

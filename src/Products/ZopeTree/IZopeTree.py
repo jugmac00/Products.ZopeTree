@@ -8,8 +8,8 @@
 # This software is distributed under the terms of the Mozilla Public
 # License (MPL)
 #
-
-from zope.interface import Attribute, Interface
+from zope.interface import Attribute
+from zope.interface import Interface
 
 
 class INode(Interface):

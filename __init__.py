@@ -6,11 +6,9 @@
 # This software is distributed under the terms of the Mozilla Public License
 # (MPL)
 #
-
 """
 $Id: __init__.py,v 1.5 2003/03/15 17:40:06 philipp Exp $
 """
-
 # make sure, 'from Interface import Interface' will work...
 try:
     from Interface import Interface
@@ -41,6 +39,6 @@ __roles__ = None
 from TreeObjectWrapper import TreeObjectWrapper  # noqa
 
 # make ZopeTree module accessible from PythonScript and ZPT
-from ZopeTree import Node, ZopeTree  # noqa  #isort:skip
+from ZopeTree import Node, ZopeTree  # noqa
 
 allow_module("Products.ZopeTree")

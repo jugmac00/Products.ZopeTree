@@ -6,11 +6,9 @@
 # This software is distributed under the terms of the Mozilla Public
 # License (MPL)
 #
-
 """
 $Id: TreeObjectWrapper.py,v 1.5 2003/04/30 10:01:55 philipp Exp $
 """
-
 import posixpath
 
 

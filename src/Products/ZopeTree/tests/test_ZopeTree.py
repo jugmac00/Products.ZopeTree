@@ -8,8 +8,10 @@ from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse
 from ZTUtils.Tree import b2a
 
-from Products.ZopeTree import Node, ZopeTree
-from Products.ZopeTree.IZopeTree import INode, IZopeTree
+from Products.ZopeTree import Node
+from Products.ZopeTree import ZopeTree
+from Products.ZopeTree.IZopeTree import INode
+from Products.ZopeTree.IZopeTree import IZopeTree
 
 ZopeTestCase.installProduct("ZopeTree")
 
