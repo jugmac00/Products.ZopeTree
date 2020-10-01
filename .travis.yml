@@ -9,7 +9,7 @@ python:
 install:
   - pip install -U pip
   - pip install -e .
-  - pip install coveralls
+  - pip install coveralls pytest pytest-cov
 
 script: pytest --cov-report html --cov=src/Products/ZopeTree
 
