@@ -5,6 +5,8 @@ v2.0.2.unreleased
 
   * enable pre-commit hooks
 
+  * drop support for Python versions < 3.6
+
 v2.0.1
 
   * fix link to PyPi badge
