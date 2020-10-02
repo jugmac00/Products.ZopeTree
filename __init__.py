@@ -41,6 +41,6 @@ __roles__ = None
 from TreeObjectWrapper import TreeObjectWrapper  # noqa
 
 # make ZopeTree module accessible from PythonScript and ZPT
-from ZopeTree import Node, ZopeTree  # noqa  #isort:skip
+from ZopeTree import Node, ZopeTree  # noqa
 
 allow_module("Products.ZopeTree")

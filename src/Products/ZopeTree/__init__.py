@@ -1,6 +1,3 @@
-"""
-isort:skip
-"""
 #
 # ZopeTree
 #
@@ -18,6 +15,6 @@ __roles__ = None
 from Products.ZopeTree.TreeObjectWrapper import TreeObjectWrapper  # noqa
 
 # make ZopeTree module accessible from PythonScript and ZPT
-from Products.ZopeTree.ZopeTree import Node, ZopeTree  # noqa  # isort:skip
+from Products.ZopeTree.ZopeTree import Node, ZopeTree  # noqa
 
 allow_module("Products.ZopeTree")
