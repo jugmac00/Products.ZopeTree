@@ -1,7 +1,9 @@
 
 CHANGES
+=======
 
 v2.0.2.unreleased
+-----------------
 
   * enable pre-commit hooks
 
@@ -9,11 +11,15 @@ v2.0.2.unreleased
 
   * add support for Python 3.9
 
+  * convert documentation from markdown to restructured text
+
 v2.0.1
+------
 
   * fix link to PyPi badge
 
 v2.0 (2019-11-23)
+-----------------
 
   * add tox environment
 
@@ -34,10 +40,12 @@ v2.0 (2019-11-23)
   * add support for Python 3.6, 3.7, 3.8
 
 v1.3.1 (2003-08-21)
+-------------------
 
   * Fixed tree_menu example. Thanks to Andy McKay for the patch.
 
 v1.3 (2003-05-30)
+-----------------
 
   * Setting a cookie with ZopeTree is optional now. Simply pass
     set_cookie=0 to the ZopeTree constructor.
@@ -48,6 +56,7 @@ v1.3 (2003-05-30)
     for reporting the bug and Toby Dickenson for providing a fix.
 
 v1.2 (2003-04-30)
+-----------------
 
   * Added optional 'expanded_nodes' argument to ZopeTree constructor.
     Thanks to Jean Jordaan for suggesting this.
@@ -58,9 +67,13 @@ v1.2 (2003-04-30)
   * Added collapse() method to ZopeTree.Node.
 
 v1.1 (2003-03-17)
+-----------------
 
   * It now works on Zope 2.4.
 
   * The unit test was not converted from RevisionManager yet. Fixed.
 
 v1.0 (2003-03-14)
+-----------------
+
+  * Initial release.
