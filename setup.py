@@ -1,15 +1,35 @@
+import codecs
+import os
+
 from setuptools import find_packages, setup
+
+HERE = os.path.abspath(os.path.dirname(__file__))
+VERSION = "2.0.2.dev0"
+
+
+def read(*parts):
+    """Build an absolute path from *parts*...
+
+    ... and return the contents of the resulting file.
+    Assume UTF-8 encoding.
+
+    Thanks to:
+    https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
+    """
+    with codecs.open(os.path.join(HERE, *parts), "rb", "utf-8") as f:
+        return f.read()
+
 
 setup(
     name="Products.ZopeTree",
-    version="2.0.2.dev0",
+    version=VERSION,
     url="https://github.com/jugmac00/Products.ZopeTree",
     project_urls={
         "Issue Tracker": "https://github.com/jugmac00/Products.ZopeTree/issues",
         "Sources": "https://github.com/jugmac00/Products.ZopeTree",
     },
     description="ZopeTree is a light-weight tree implementation.",
-    long_description=open("README.md").read(),
+    long_description=read("README.rst") + "\n\n" + read("CHANGES.rst"),
     long_description_content_type="text/markdown",
     maintainer="Juergen Gmach",
     maintainer_email="juergen.gmach@googlemail.com",
