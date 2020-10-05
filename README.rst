@@ -13,7 +13,7 @@
 .. image:: https://requires.io/github/jugmac00/Products.ZopeTree/requirements.svg?branch=master
   :target: https://requires.io/github/jugmac00/Products.ZopeTree/requirements/?branch=master
 
-.. image:: https://img.shields.io/pypi/l/Products.ZopeTree.svg   :alt: PyPI - License
+.. image:: https://img.shields.io/pypi/l/Products.ZopeTree
 
 
 Products.ZopeTree
