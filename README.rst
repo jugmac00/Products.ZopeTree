@@ -14,7 +14,7 @@
   :target: https://requires.io/github/jugmac00/Products.ZopeTree/requirements/?branch=master
 
 .. image:: https://img.shields.io/pypi/l/Products.ZopeTree
-  :target: https://pypi.org/project/Products.ZopeTree/
+  :target: https://github.com/jugmac00/Products.ZopeTree/blob/master/LICENSE.txt
 
 
 Products.ZopeTree
