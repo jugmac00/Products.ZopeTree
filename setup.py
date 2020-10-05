@@ -36,6 +36,12 @@ setup(
         "zope.interface",
         "zope.testing",
     ],
+    extras_require={
+        "test": [
+            "pytest >=6.1.1",
+            "pytest-cov",
+        ],
+    },
     include_package_data=True,
     zip_safe=False,
 )
