@@ -2,8 +2,13 @@
 CHANGES
 =======
 
-v2.0.2.unreleased
------------------
+v3.0.1
+------
+
+  * fix MANIFEST.in
+
+v3.0.0
+------
 
   * enable pre-commit hooks
 

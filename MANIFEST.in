@@ -1,4 +1,4 @@
-include LICENSE *.rst *.toml *.yml *.yaml *.txt
+include *.rst *.toml *.yml *.yaml *.txt
 
 # tests
 include tox.ini
@@ -6,9 +6,6 @@ include tox.ini
 # from suggested includes by check-manifest
 include *.py
 recursive-include src *.py
-
-# linting
-include .flake8
 
 # examples
 recursive-include examples *.pt
