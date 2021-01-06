@@ -5,6 +5,11 @@ CHANGES
 unreleased
 ----------
 
+  * nothing yet
+
+v3.1.0
+------
+
   * use gh actions for CI instead of Travis
 
 v3.0.1
