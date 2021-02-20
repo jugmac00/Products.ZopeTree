@@ -4,7 +4,7 @@ import os
 from setuptools import find_packages, setup
 
 HERE = os.path.abspath(os.path.dirname(__file__))
-VERSION = "3.1.1.dev"
+VERSION = "3.1.1.dev0"
 
 
 def read(*parts):
@@ -31,6 +31,8 @@ setup(
     description="ZopeTree is a light-weight tree implementation.",
     long_description=read("README.rst") + "\n\n" + read("CHANGES.rst"),
     long_description_content_type="text/x-rst",
+    author="Philipp von Weitershausen",
+    author_email="philipp@weitershausen.de",
     maintainer="Juergen Gmach",
     maintainer_email="juergen.gmach@googlemail.com",
     classifiers=[
