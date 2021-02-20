@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-unreleased
-----------
+v3.2.0
+------
 
-  * nothing yet
+  * add Philipp von Weitershausen as the author of this package
 
 v3.1.0
 ------
