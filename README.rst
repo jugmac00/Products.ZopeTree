@@ -11,9 +11,6 @@
 .. image:: https://img.shields.io/pypi/pyversions/Products.ZopeTree.svg
   :target: https://pypi.org/project/Products.ZopeTree/
 
-.. image:: https://requires.io/github/jugmac00/Products.ZopeTree/requirements.svg?branch=master
-  :target: https://requires.io/github/jugmac00/Products.ZopeTree/requirements/?branch=master
-
 .. image:: https://img.shields.io/pypi/l/Products.ZopeTree
   :target: https://github.com/jugmac00/Products.ZopeTree/blob/master/LICENSE.txt
 
