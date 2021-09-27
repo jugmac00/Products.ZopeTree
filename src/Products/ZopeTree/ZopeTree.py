@@ -142,7 +142,7 @@ class ZopeTree(Node):
                 request.RESPONSE.setCookie(request_variable, tree_expansion)
             expanded_nodes = self.decodeTreeExpansion(tree_expansion)
 
-        Node.__init__(self, root_object, 0, id_attr, children_attr, expanded_nodes)
+        super().__init__(root_object, 0, id_attr, children_attr, expanded_nodes)
         self.expand()
 
     def encodeTreeExpansion(self, expanded_nodes):
