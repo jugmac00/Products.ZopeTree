@@ -4,7 +4,7 @@ import os
 from setuptools import find_packages, setup
 
 HERE = os.path.abspath(os.path.dirname(__file__))
-VERSION = "3.2.1.dev0"
+VERSION = "3.3.1.dev0"
 
 
 def read(*parts):
