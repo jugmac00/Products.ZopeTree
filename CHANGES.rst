@@ -2,10 +2,10 @@
 CHANGES
 =======
 
-unreleased
-----------
+v3.3.0
+------
 
-  * nothing yet
+  * add support for Python 3.10
 
 v3.2.0
 ------
