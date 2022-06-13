@@ -161,6 +161,6 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
 
 def test_suite():
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(NodeTest))
-    suite.addTest(unittest.makeSuite(ZopeTreeTest))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(NodeTest))
+    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(ZopeTreeTest))
     return suite
