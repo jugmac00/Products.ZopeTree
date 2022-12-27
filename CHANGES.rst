@@ -7,6 +7,8 @@ unreleased
 
   * remove Coveralls.io integration
 
+  * drop support for Python 3.6
+
 v3.3.0
 ------
 
