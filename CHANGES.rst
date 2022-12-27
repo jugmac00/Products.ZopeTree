@@ -5,7 +5,7 @@ CHANGES
 unreleased
 ----------
 
-  * nothing yet
+  * remove Coveralls.io integration
 
 v3.3.0
 ------

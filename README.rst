@@ -2,9 +2,6 @@
    :target: https://github.com/jugmac00/Products.ZopeTree/actions?workflow=CI
    :alt: CI Status
 
-.. image:: https://coveralls.io/repos/github/jugmac00/Products.ZopeTree/badge.svg?branch=master
-  :target: https://coveralls.io/github/jugmac00/Products.ZopeTree?branch=master
-
 .. image:: https://img.shields.io/pypi/v/Products.ZopeTree.svg
   :target: https://pypi.org/project/Products.ZopeTree/
 
