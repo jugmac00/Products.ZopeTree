@@ -9,6 +9,8 @@ unreleased
 
   * drop support for Python 3.6
 
+  * Fix warnings for Python 3.11
+
 v3.3.0
 ------
 

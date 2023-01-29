@@ -1,5 +1,4 @@
 """Test suite."""
-import unittest
 import zlib
 from io import BytesIO
 
@@ -157,10 +156,3 @@ class ZopeTreeTest(ZopeTestCase.ZopeTestCase):
             self.root_obj, "id", "children", request, self.varname, set_cookie=0
         )
         self.assertFalse(self.varname in response.cookies)
-
-
-def test_suite():
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(NodeTest))
-    suite.addTest(unittest.defaultTestLoader.loadTestsFromTestCase(ZopeTreeTest))
-    return suite
