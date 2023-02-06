@@ -13,7 +13,6 @@ from zope.interface import Attribute, Interface
 
 
 class INode(Interface):
-
     object = Attribute(
         """
         The object that is being wrapped.

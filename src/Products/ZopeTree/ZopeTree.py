@@ -23,7 +23,6 @@ from Products.ZopeTree.IZopeTree import INode, IZopeTree
 
 @zope.interface.implementer(INode)
 class Node:
-
     __allow_access_to_unprotected_subobjects__ = 1
 
     def _get_attr(self, attr):
@@ -122,7 +121,6 @@ def safe_decompress(input, max_size=10240):
 
 @zope.interface.implementer(IZopeTree)
 class ZopeTree(Node):
-
     __allow_access_to_unprotected_subobjects__ = 1
 
     def __init__(
