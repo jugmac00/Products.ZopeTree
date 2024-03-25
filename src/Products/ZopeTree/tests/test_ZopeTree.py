@@ -1,4 +1,5 @@
 """Test suite."""
+
 import zlib
 from io import BytesIO
 
