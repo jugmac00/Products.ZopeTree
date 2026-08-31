@@ -13,23 +13,17 @@ from zope.interface import Attribute, Interface
 
 
 class INode(Interface):
-    object = Attribute(
-        """
+    object = Attribute("""
         The object that is being wrapped.
-        """
-    )
+        """)
 
-    depth = Attribute(
-        """
+    depth = Attribute("""
         The positional depth of this node in the tree.
-        """
-    )
+        """)
 
-    expanded = Attribute(
-        """
+    expanded = Attribute("""
         True if this node is expanded.
-        """
-    )
+        """)
 
     def __init__(object, depth, id_attr, children_attr, expanded_nodes=[]):
         """
